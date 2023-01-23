@@ -1,9 +1,6 @@
 name: Create a new EC2 instance
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   deploy:
