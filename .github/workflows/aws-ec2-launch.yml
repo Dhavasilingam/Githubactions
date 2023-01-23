@@ -14,7 +14,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Launch EC2 Instance
-        uses: Githubactions/configure-aws-credentials@v1 
+        uses: aws-actions/ec2-launch-instance@v1
         with:
           region: ${{ secrets.AWS_REGION }}
           image-id: ${{ secrets.AWS_AMI_ID }}
@@ -24,4 +24,3 @@ jobs:
           key-name: ${{ secrets.AWS_KEY_NAME }}
           tag-key: launch-by
           tag-value: GitHub-Actions
- 
