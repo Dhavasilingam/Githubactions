@@ -27,5 +27,5 @@ jobs:
           --instance-type t2.micro \
           --key-name Launch_ec2 \
           --subnet-id subnet-051991db227ed4193 \
-          --security-group-ids sg-01234567890abcdef0 \
+          --security-group-ids sg-04c1c785570f853a6 \
           --associate-public-ip-address
