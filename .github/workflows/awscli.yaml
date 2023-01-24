@@ -1,31 +1,31 @@
-name: Launch EC2 Instance
+name: Launch AWS EC2 Instance
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  launch-ec2-instance:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
+
     - name: Configure AWS credentials
-      run: |
-        echo "::set-env name=AWS_ACCESS_KEY::${{ secrets.AWS_ACCESS_KEY }}"
-        echo "::set-env name=AWS_SECRET_KEY::${{ secrets.AWS_SECRET_KEY }}"
-        echo "::set-env name=AWS_REGION::us-west-2"
-      env:
-        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        AWS_REGION: us-west-2
-      
-    - name: Install AWS CLI
-      run: |
-        apt-get update
-        apt-get install -y python-pip
-        pip install awscli --upgrade --user
-      
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
     - name: Launch EC2 instance
       run: |
-        aws ec2 run-instances --image-id ami-0a313d6098716f372 --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-01234567890abcdef0 --subnet-id subnet-01234567890abcdef0
+        aws ec2 run-instances \
+          --image-id ami-0f948dba95c71c71c \
+          --instance-type t2.micro \
+          --key-name MyKeyPair \
+          --subnet-id subnet-01234567890abcdef0 \
+          --security-group-ids sg-01234567890abcdef0 \
+          --associate-public-ip-address
