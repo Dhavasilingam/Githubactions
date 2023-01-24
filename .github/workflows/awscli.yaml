@@ -23,9 +23,9 @@ jobs:
     - name: Launch EC2 instance
       run: |
         aws ec2 run-instances \
-          --image-id ami-0f948dba95c71c71c \
+          --image-id ami-0cca134ec43cf708f \
           --instance-type t2.micro \
-          --key-name MyKeyPair \
-          --subnet-id subnet-01234567890abcdef0 \
+          --key-name Launch_ec2 \
+          --subnet-id subnet-051991db227ed4193 \
           --security-group-ids sg-01234567890abcdef0 \
           --associate-public-ip-address
