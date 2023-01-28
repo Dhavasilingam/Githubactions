@@ -18,4 +18,4 @@ jobs:
         aws-region: ap-south-1
     - name: terminate EC2 instance
       run: aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e
-      //aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e i-0de64f23622e9692e
+      #aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e i-0de64f23622e9692e
