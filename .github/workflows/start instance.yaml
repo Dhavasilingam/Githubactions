@@ -1,11 +1,11 @@
-name: Stop EC2 instance
+name: Start EC2 instance
 
 
-on: push
+\\on: push
 
 
 jobs:
-  stop_instance:
+  start_instance:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -16,5 +16,5 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
-    - name: Stop EC2 instance
+    - name: start EC2 instance
       run: aws ec2 start-instances --instance-ids i-0d43d301d70a539d8
