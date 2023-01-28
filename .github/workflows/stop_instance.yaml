@@ -1,22 +1,21 @@
 name: Stop EC2 instance
 
+
 on: push
 
 
 jobs:
   stop_instance:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-20.04
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
-
     - name: Stop EC2 instance
       run: aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
+
