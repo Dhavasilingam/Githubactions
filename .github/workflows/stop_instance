@@ -15,10 +15,10 @@ jobs:
 
     - name: Stop EC2 instance
       env:
-        AWS_REGION: us-west-2
+        AWS_REGION: ap-south-1
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
         apt-get update
         apt-get install -y awscli
-        aws ec2 stop-instances --instance-ids i-1234567890abcdef0
+        aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
