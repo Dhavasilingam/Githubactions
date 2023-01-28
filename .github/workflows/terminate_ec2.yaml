@@ -17,5 +17,5 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
     - name: terminate EC2 instance
-      run: aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e
+      run: aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e i-00a7cde665f427f6f i-005d1d0c8115d9ada i-06cd80e245e31c6a4
       #aws ec2 terminate-instances --instance-ids i-0de64f23622e9692e i-0de64f23622e9692e
