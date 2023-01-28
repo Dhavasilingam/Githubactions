@@ -1,34 +1,22 @@
 name: Stop EC2 instance
 
-on:
-  push:
-    branches:
-      -main
-      
-      
+on: push
+
+
 jobs:
-  stop-instance:
+  stop_instance:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: Use Node.js 16
-      uses: actions/setup-node@v4
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        node-version: 16
-    - name: Install AWS SDK
-      run: npm install aws-sdk
-    - name: Stop EC2 Instance
-      run: |
-        const AWS = require('aws-sdk');
-        const ec2 = new AWS.EC2({ region: 'ap-south-1' });
-        const params = {
-          InstanceIds: [ 'i-0d43d301d70a539d8' ]
-        };
-        ec2.stopInstances(params, (err, data) => {
-          if (err) {
-            console.log('Error', err);
-          } else {
-            console.log('Success', data);
-          }
-        });
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Stop EC2 instance
+      run: aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
