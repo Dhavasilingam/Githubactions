@@ -1,6 +1,6 @@
 name: AWS EC2 Instance
 
-on:
+\\on:
   push:
     branches:
       - main
