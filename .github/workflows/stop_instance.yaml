@@ -13,9 +13,9 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        env: AWS_DEFAULT_REGION=ap-south-1
     - name: Stop EC2 instance
       run: |
-        AWS_REGION=ap-south-1 
         aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
         echo "stopped" >> $GITHUB_ENV
 
