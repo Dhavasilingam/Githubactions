@@ -13,14 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Get AWS Credentials
-      uses: aws-actions/get-aws-credentials@v1
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-arn: "arn:aws:iam::829169262051:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport"
+        aws-role-arn: "arn:aws:iam::829169262051:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport"
 
     - name: Stop EC2 instance
-      uses: aws-actions/amazon-ec2-instance-actions@v1
-      with:
-        instance-ids: i-0d43d301d70a539d8
-        region: ${{ env.AWS_REGION }}
-        action: stop
+      run: |
+        aws configure set region ${{ env.AWS_REGION }}
+        aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
