@@ -1,19 +1,26 @@
-name: Using arn to stop EC2 instance
+name: Stop EC2 Instance
 
+on:
+  push:
+    branches:
+      - main
 
-on: push
-
+env:
+  AWS_REGION: us-west-2
 
 jobs:
-  stop_instance:
+  stop-instance:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Get AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1-node16
+    - name: Get AWS Credentials
+      uses: aws-actions/get-aws-credentials@v1
       with:
-        ROLE_ARN: arn:aws:iam::829169262051:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport
-        aws-region: ap-south-1
-    - name: start EC2 instance
-      run: aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
+        role-arn: "arn:aws:iam::998163017104:role/gha/gha-tableau"
+
+    - name: Stop EC2 instance
+      uses: aws-actions/amazon-ec2-instance-actions@v1
+      with:
+        instance-ids: i-049df61146f12
+        region: ${{ env.AWS_REGION }}
+        action: stop
