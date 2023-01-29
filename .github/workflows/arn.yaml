@@ -16,8 +16,9 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        ROLE_ARN: "arn:aws:iam::829169262051:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor"
+        role-to-assume: "arn:aws:iam::829169262051:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport"
         aws-region: ${{ env.AWS_REGION }}
+        audience: sts.amazonaws.com
 
     - name: Stop EC2 instance
       run: |
