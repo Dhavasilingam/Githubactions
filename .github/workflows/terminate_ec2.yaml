@@ -1,7 +1,7 @@
 name: Terminate EC2 instance
 
 
-on: push
+#on: push
 
 
 jobs:
