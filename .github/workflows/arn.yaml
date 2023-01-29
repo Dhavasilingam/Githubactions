@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  AWS_REGION: us-west-2
+  AWS_REGION: ap-south-1
 
 jobs:
   stop-instance:
@@ -16,11 +16,11 @@ jobs:
     - name: Get AWS Credentials
       uses: aws-actions/get-aws-credentials@v1
       with:
-        role-arn: "arn:aws:iam::998163017104:role/gha/gha-tableau"
+        role-arn: "arn:aws:iam::829169262051:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport"
 
     - name: Stop EC2 instance
       uses: aws-actions/amazon-ec2-instance-actions@v1
       with:
-        instance-ids: i-049df61146f12
+        instance-ids: i-0d43d301d70a539d8
         region: ${{ env.AWS_REGION }}
         action: stop
