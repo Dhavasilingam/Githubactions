@@ -17,4 +17,4 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-south-1
     - name: start EC2 instance
-      run: aws ec2 start-instances --instance-ids i-0de64f23622e9692e
+      run: aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
