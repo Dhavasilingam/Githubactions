@@ -1,10 +1,12 @@
 name: Stop EC2 Instance
 
-\\on:
+on:
   push:
     branches:
       - main
-
+permissions:
+  id-token: write   
+  contents: read
 env:
   AWS_REGION: ap-south-1
 
@@ -16,11 +18,11 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: "arn:aws:iam::829169262051:user/EC2_new"
+        role-to-assume: "arn:aws:iam::829169262051:role/EC2_latest"
         aws-region: ${{ env.AWS_REGION }}
         role-session-tagging: true
         audience: sts.amazonaws.com
 
     - name: Stop EC2 instance
       run: |
-        aws ec2 stop-instances --instance-ids i-0d43d301d70a539d8
+        aws ec2 start-instances --instance-ids i-0d43d301d70a539d8
