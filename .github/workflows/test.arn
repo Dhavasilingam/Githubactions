@@ -1,0 +1,30 @@
+name: Start EC2 Instance
+
+on:
+  push:
+    branches:
+      - main
+      
+permissions:
+  id-token: write
+  contents: read
+  
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
+  start_instance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Latest Source Code
+        uses: actions/checkout@v3
+		
+      - name: Get AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          Instance Profile ARN: "arn:aws:iam::829169262051:instance-profile/test"
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: start EC2 instance
+        run: aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
