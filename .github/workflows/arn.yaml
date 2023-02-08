@@ -1,6 +1,6 @@
 name: Start EC2 Instance
 
-#on:
+on:
   push:
     branches:
       - main
