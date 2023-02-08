@@ -23,7 +23,21 @@ jobs:
       - name: Get AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          Instance Profile ARN: "arn:aws:iam::829169262051:instance-profile/test"
+          role-arn: "arn:aws:iam::829169262051:instance-profile/test"
+          assume-role-policy: |
+            {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Action": "sts:AssumeRole",
+                  "Principal": {
+                    "Service": "ec2.amazonaws.com"
+                  },
+                  "Effect": "Allow",
+                  "Sid": ""
+                }
+              ]
+            }
           aws-region: ${{ env.AWS_REGION }}
 
       - name: start EC2 instance
