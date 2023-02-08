@@ -23,6 +23,5 @@ jobs:
         role-session-tagging: true
         audience: sts.amazonaws.com
 
-    - name: Stop EC2 instance
-      run: |
-        aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
+    - name: start EC2 instance
+      run: aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
