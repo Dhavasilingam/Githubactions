@@ -5,13 +5,17 @@ on:
     branches:
       - main
 
+permissions: 
+  id-token: write
+  contents: read
+  
 env:
   AWS_REGION: ap-south-1
-
+  
 jobs:
   start_instance:
     runs-on: ubuntu-latest
-
+  
     steps:
     - name: Checkout Latest Source Code
       uses: actions/checkout@v3
