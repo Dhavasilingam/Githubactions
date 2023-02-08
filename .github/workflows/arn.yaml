@@ -11,7 +11,7 @@ env:
   AWS_REGION: ap-south-1
 
 jobs:
-  stop-instance:
+  start_instance:
     runs-on: ubuntu-latest
 
     steps:
