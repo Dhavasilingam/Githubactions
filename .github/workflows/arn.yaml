@@ -1,4 +1,4 @@
-name: Stop EC2 Instance
+name: Start EC2 Instance
 
 on:
   push:
@@ -25,4 +25,4 @@ jobs:
 
     - name: Stop EC2 instance
       run: |
-        aws ec2 start-instances --instance-ids i-0d43d301d70a539d8
+        aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
