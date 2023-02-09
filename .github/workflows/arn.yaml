@@ -18,8 +18,9 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        ROLE ARN: "arn:aws:iam::829169262051:role/test"
+        role-to-assume: "arn:aws:iam::829169262051:role/EC@"
+        role-session-name: samplerolesession
         aws-region: ${{ env.AWS_REGION }}
-
+        
     - name: start EC2 instance
       run: aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
