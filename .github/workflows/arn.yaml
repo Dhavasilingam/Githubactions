@@ -1,5 +1,5 @@
 name: AWS start ec2
-on:
+#on:
   push
 env:
   AWS_REGION : "ap-south-1"   
