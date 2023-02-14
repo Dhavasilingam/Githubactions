@@ -1,26 +1,27 @@
-name: Start EC2 Instance
-
+name: AWS OIDC Connect Demo
 on:
-  push:
-    branches:
-      - main
-permissions:
-  id-token: write   
-  contents: read
+  push
 env:
-  AWS_REGION: ap-south-1
-
+  AWS_REGION : "ap-south-1"   
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
 jobs:
-  start_instance:
-    runs-on: ubuntu-latest
-
+  DemoOIDC:
+    runs-on: demo
     steps:
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: "arn:aws:iam::829169262051:role/EC@"
-        role-session-name: samplerolesession
-        aws-region: ${{ env.AWS_REGION }}
-        
-    - name: start EC2 instance
-      run: aws ec2 start-instances --instance-ids i-03d42a3e35df8cb78
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::829169262051:role/github-oidc-role
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Print AWS SSM Parameter
+        run: aws ssm get-parameter --name=hello_aws-gh-oidc --query Parameter.Value
+
+      - name: Print assumed role
+        run: aws sts get-caller-identity
